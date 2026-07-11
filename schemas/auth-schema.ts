@@ -28,3 +28,28 @@ export const signupSchema = loginSchema
 
 export type LoginSchema = z.infer<typeof loginSchema>;
 export type SignupSchema = z.infer<typeof signupSchema>;
+
+export const forgotPasswordSchema = z.object({
+  email: z.email("Please enter a valid email address."),
+});
+
+export type ForgotPasswordSchema = z.infer<
+  typeof forgotPasswordSchema
+>;
+
+export const resetPasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters long."),
+
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords do not match.",
+  });
+
+export type ResetPasswordSchema = z.infer<
+  typeof resetPasswordSchema
+>;
