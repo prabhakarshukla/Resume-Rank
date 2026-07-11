@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
 import { loginAction } from "@/features/auth/actions";
 import { loginSchema, type LoginSchema } from "@/schemas/auth-schema";
@@ -45,13 +46,14 @@ export function LoginForm() {
       setError("root", {
         message: result.message,
       });
-
+      toast.error(result.message);
       return;
     }
 
+    toast.success("Welcome back!");
     router.push("/dashboard");
     router.refresh();
-  }
+  } 
 
   return (
     <form
