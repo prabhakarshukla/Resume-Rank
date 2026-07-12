@@ -29,6 +29,7 @@ export function DashboardHero() {
 
       <div className="flex shrink-0 items-center gap-2">
         <Button
+          nativeButton={false}
           variant="outline"
           render={<Link href="/analysis" />}
           className="h-9 gap-1.5"
@@ -37,6 +38,7 @@ export function DashboardHero() {
           Run analysis
         </Button>
         <Button
+         nativeButton={false}
           render={<Link href="/upload" />}
           className="bg-brand text-brand-foreground hover:bg-brand/90 h-9 gap-1.5"
         >

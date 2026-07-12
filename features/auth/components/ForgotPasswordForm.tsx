@@ -113,14 +113,14 @@ export function ForgotPasswordForm() {
         {isSubmitting ? "Sending..." : "Send Reset Link"}
       </Button>
 
-      <Button
-        type="button"
-        variant="ghost"
-        render={<Link href="/auth/login" />}
-        className="h-9 w-full text-muted-foreground hover:text-foreground"
-      >
+      <Link href="/login" className="w-full">
+        <Button
+          variant="ghost"
+          className="w-full"
+        >
         Back to Login
-      </Button>
+        </Button>
+      </Link>
     </form>
   );
 }

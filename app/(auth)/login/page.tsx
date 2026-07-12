@@ -1,11 +1,13 @@
+import { AuthLayout } from "@/components/layout/AuthLayout";
 import { LoginForm } from "@/features/auth/components/LoginForm";
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <LoginForm />
-      </div>
-    </main>
+    <AuthLayout
+      title="Welcome back"
+      description="Sign in to continue to ResumeRank"
+    >
+      <LoginForm />
+    </AuthLayout>
   );
 }

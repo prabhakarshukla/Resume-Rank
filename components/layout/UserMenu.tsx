@@ -74,11 +74,15 @@ export function UserMenu({
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem render={<Link href="/profile" />}>
+        <DropdownMenuItem 
+        nativeButton={false} 
+        render={<Link href="/profile" />}>
           <User />
           Profile
         </DropdownMenuItem>
-        <DropdownMenuItem render={<Link href="/settings" />}>
+        <DropdownMenuItem 
+        nativeButton={false} 
+        render={<Link href="/settings" />}>
           <Settings />
           Settings
         </DropdownMenuItem>

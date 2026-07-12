@@ -110,7 +110,7 @@ export function LoginForm() {
         )}
         <div className="flex justify-end pt-1">
           <Link
-            href="/auth/forgot-password"
+            href="/forgot-password"
             className="text-xs text-brand hover:underline"
           >
             Forgot password?
@@ -137,13 +137,14 @@ export function LoginForm() {
         </div>
       </div>
 
+     <Link href="/signup" className="w-full">
       <Button
         variant="outline"
-        render={<Link href="/auth/signup" />}
         className="h-9 w-full"
       >
-        Create an account
+      Create an account
       </Button>
+     </Link>
     </form>
   );
 }

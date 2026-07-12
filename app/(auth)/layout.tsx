@@ -1,17 +1,17 @@
 import type { ReactNode } from "react";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 
-interface AuthLayoutProps {
-  children: ReactNode;
-}
-
-export default function AuthLayout({
+export default function Layout({
   children,
-}: AuthLayoutProps) {
+}: {
+  children: ReactNode;
+}) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
-      <div className="w-full max-w-md">
-        {children}
-      </div>
-    </main>
+    <AuthLayout
+      title="ResumeRank"
+      description="AI-powered resume analysis"
+    >
+      {children}
+    </AuthLayout>
   );
 }

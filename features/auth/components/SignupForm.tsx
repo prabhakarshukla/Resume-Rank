@@ -178,13 +178,14 @@ export function SignupForm() {
         </div>
       </div>
 
-      <Button
+      <Link href="/login" className="w-full">
+        <Button
         variant="outline"
-        render={<Link href="/auth/login" />}
         className="h-9 w-full"
-      >
+        >
         Sign In
-      </Button>
+        </Button>
+      </Link>
     </form>
   );
 }

@@ -27,6 +27,7 @@ export function RecentAnalyses() {
           </p>
         </div>
         <Button
+        nativeButton={false}
           variant="ghost"
           size="sm"
           render={<Link href="/history" />}
@@ -109,7 +110,9 @@ export function RecentAnalyses() {
                       <Ellipsis className="size-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-44">
-                      <DropdownMenuItem render={<Link href={`/analysis/${row.id}`} />}>
+                      <DropdownMenuItem 
+                      nativeButton={false}
+                      render={<Link href={`/analysis/${row.id}`} />}>
                         <Eye />
                         View analysis
                       </DropdownMenuItem>

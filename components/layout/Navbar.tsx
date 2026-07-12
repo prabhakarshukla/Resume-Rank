@@ -47,14 +47,15 @@ export function Navbar() {
         <ThemeToggle />
         <Notifications />
         <div className="bg-border mx-1 hidden h-6 w-px sm:block" />
-        <Button
-          render={<Link href="/upload" />}
+        <Link href="/upload">
+          <Button
           className="bg-brand text-brand-foreground hover:bg-brand/90 h-9 gap-1.5 px-3"
-        >
-          <Upload className="size-4" />
-          <span className="hidden sm:inline">Upload Resume</span>
-          <span className="sm:hidden">Upload</span>
+          >
+        <Upload className="size-4" />
+        <span className="hidden sm:inline">Upload Resume</span>
+        <span className="sm:hidden">Upload</span>
         </Button>
+        </Link>
       </div>
     </header>
   );

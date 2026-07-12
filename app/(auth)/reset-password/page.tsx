@@ -1,11 +1,13 @@
+import { AuthLayout } from "@/components/layout/AuthLayout";
 import { ResetPasswordForm } from "@/features/auth/components/ResetPasswordForm";
 
 export default function ResetPasswordPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <ResetPasswordForm />
-      </div>
-    </main>
+    <AuthLayout
+      title="Reset password"
+      description="Choose a new password for your account."
+    >
+      <ResetPasswordForm />
+    </AuthLayout>
   );
 }
