@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -39,12 +39,12 @@ export function ResetPasswordForm() {
       setError("root", {
         message: result.message,
       });
-      toast.error(result.message);
+
       return;
     }
 
     reset();
-    toast.success("Password updated successfully.");
+
     router.push("/login");
   }
 

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+
 import { signupAction } from "@/features/auth/actions";
 import { signupSchema, type SignupSchema } from "@/schemas/auth-schema";
 
@@ -48,10 +48,10 @@ export function SignupForm() {
       setError("root", {
         message: result.message,
       });
-      toast.error(result.message);
+
       return;
     }
-    toast.success("Account created successfully!");
+
     router.push("/dashboard");
     router.refresh();
   }
