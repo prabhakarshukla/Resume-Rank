@@ -1,18 +1,21 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 
 import { loginAction } from "@/features/auth/actions";
 import { loginSchema, type LoginSchema } from "@/schemas/auth-schema";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordVisibilityToggle } from "@/components/common/PasswordVisibilityToggle";
 
 export function LoginForm() {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -46,66 +49,100 @@ export function LoginForm() {
       setError("root", {
         message: result.message,
       });
-      toast.error(result.message);
+
       return;
     }
 
-    toast.success("Welcome back!");
     router.push("/dashboard");
     router.refresh();
-  } 
+  }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-5 rounded-xl border p-8 shadow-sm"
+      className="flex flex-col gap-6 p-6 sm:p-8"
     >
       {errors.root && (
-        <p className="text-sm text-red-500">
+        <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-950/20 dark:text-red-400">
           {errors.root.message}
-        </p>
+        </div>
       )}
 
       <div className="space-y-2">
-        <label htmlFor="email">Email</label>
-
+        <label htmlFor="email" className="text-sm font-medium">
+          Email
+        </label>
         <Input
           id="email"
           type="email"
-          placeholder="Enter your email"
+          placeholder="name@example.com"
           {...register("email")}
+          className={errors.email ? "border-destructive" : ""}
         />
-
         {errors.email && (
-          <p className="text-sm text-red-500">
+          <p className="text-xs text-destructive">
             {errors.email.message}
           </p>
         )}
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="password">Password</label>
-
-        <Input
-          id="password"
-          type="password"
-          placeholder="Enter your password"
-          {...register("password")}
-        />
-
+        <label htmlFor="password" className="text-sm font-medium">
+          Password
+        </label>
+        <div className="relative">
+          <Input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="••••••••"
+            {...register("password")}
+            className={`pr-10 ${errors.password ? "border-destructive" : ""}`}
+          />
+          <PasswordVisibilityToggle
+            isVisible={showPassword}
+            onToggle={() => setShowPassword(!showPassword)}
+          />
+        </div>
         {errors.password && (
-          <p className="text-sm text-red-500">
+          <p className="text-xs text-destructive">
             {errors.password.message}
           </p>
         )}
+        <div className="flex justify-end pt-1">
+          <Link
+            href="/auth/forgot-password"
+            className="text-xs text-brand hover:underline"
+          >
+            Forgot password?
+          </Link>
+        </div>
       </div>
 
       <Button
         type="submit"
-        className="w-full"
+        className="bg-brand text-brand-foreground hover:bg-brand/90 h-9 w-full font-medium"
         disabled={isSubmitting}
       >
         {isSubmitting ? "Signing In..." : "Sign In"}
+      </Button>
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-border" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-card px-2 text-muted-foreground">
+            New to ResumeRank?
+          </span>
+        </div>
+      </div>
+
+      <Button
+        variant="outline"
+        render={<Link href="/auth/signup" />}
+        className="h-9 w-full"
+      >
+        Create an account
       </Button>
     </form>
   );

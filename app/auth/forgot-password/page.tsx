@@ -1,11 +1,19 @@
+import type { Metadata } from "next";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 import { ForgotPasswordForm } from "@/features/auth/components/ForgotPasswordForm";
+
+export const metadata: Metadata = {
+  title: "Reset Password",
+  description: "Reset your ResumeRank password",
+};
 
 export default function ForgotPasswordPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <ForgotPasswordForm />
-      </div>
-    </main>
+    <AuthLayout
+      title="Forgot password?"
+      description="Enter your email and we&apos;ll send you a link to reset your password"
+    >
+      <ForgotPasswordForm />
+    </AuthLayout>
   );
 }
