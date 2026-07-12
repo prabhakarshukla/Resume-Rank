@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { toast } from "sonner";
 import { forgotPasswordAction } from "@/features/auth/actions";
 import {
   forgotPasswordSchema,
@@ -33,13 +33,13 @@ export function ForgotPasswordForm() {
       setError("root", {
         message: result.message,
       });
-
+      toast.error(result.message);
       return;
     }
 
     reset();
 
-    alert("Password reset email sent successfully.");
+    toast.success("Password reset email sent successfully.");
   }
 
   return (
