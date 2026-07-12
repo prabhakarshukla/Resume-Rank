@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail, Check } from "lucide-react";
 
 import { forgotPasswordAction } from "@/features/auth/actions";
 import {
@@ -13,11 +16,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export function ForgotPasswordForm() {
+  const [success, setSuccess] = useState(false);
+
   const {
     register,
     handleSubmit,
     setError,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -25,6 +31,8 @@ export function ForgotPasswordForm() {
       email: "",
     },
   });
+
+  const emailValue = watch("email");
 
   async function onSubmit(data: ForgotPasswordSchema) {
     const result = await forgotPasswordAction(data);
@@ -37,34 +45,61 @@ export function ForgotPasswordForm() {
       return;
     }
 
-    reset();
+    setSuccess(true);
+  }
 
-    alert("Password reset email sent successfully.");
+  if (success) {
+    return (
+      <div className="flex flex-col items-center gap-4 p-6 sm:p-8">
+        <div className="rounded-full bg-success/10 p-3">
+          <Check className="size-5 text-success" />
+        </div>
+        <div className="space-y-2 text-center">
+          <h3 className="font-semibold">Check your email</h3>
+          <p className="text-sm text-muted-foreground">
+            We sent a password reset link to{" "}
+            <span className="font-medium text-foreground">{emailValue}</span>
+          </p>
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          render={<Link href="/auth/login" />}
+          className="mt-2 w-full"
+        >
+          Back to Login
+        </Button>
+      </div>
+    );
   }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-5 rounded-xl border bg-white p-8 shadow-sm"
+      className="flex flex-col gap-6 p-6 sm:p-8"
     >
       {errors.root && (
-        <p className="text-sm text-red-500">
+        <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-950/20 dark:text-red-400">
           {errors.root.message}
-        </p>
+        </div>
       )}
 
       <div className="space-y-2">
-        <label htmlFor="email">Email</label>
-
-        <Input
-          id="email"
-          type="email"
-          placeholder="john@example.com"
-          {...register("email")}
-        />
-
+        <label htmlFor="email" className="text-sm font-medium">
+          Email
+        </label>
+        <div className="relative">
+          <Input
+            id="email"
+            type="email"
+            placeholder="name@example.com"
+            {...register("email")}
+            className={`pl-9 ${errors.email ? "border-destructive" : ""}`}
+          />
+          <Mail className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        </div>
         {errors.email && (
-          <p className="text-sm text-red-500">
+          <p className="text-xs text-destructive">
             {errors.email.message}
           </p>
         )}
@@ -72,12 +107,19 @@ export function ForgotPasswordForm() {
 
       <Button
         type="submit"
-        className="w-full"
+        className="bg-brand text-brand-foreground hover:bg-brand/90 h-9 w-full font-medium"
         disabled={isSubmitting}
       >
-        {isSubmitting
-          ? "Sending..."
-          : "Send Reset Link"}
+        {isSubmitting ? "Sending..." : "Send Reset Link"}
+      </Button>
+
+      <Button
+        type="button"
+        variant="ghost"
+        render={<Link href="/auth/login" />}
+        className="h-9 w-full text-muted-foreground hover:text-foreground"
+      >
+        Back to Login
       </Button>
     </form>
   );

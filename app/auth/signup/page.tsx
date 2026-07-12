@@ -1,11 +1,19 @@
+import type { Metadata } from "next";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 import { SignupForm } from "@/features/auth/components/SignupForm";
+
+export const metadata: Metadata = {
+  title: "Create Account",
+  description: "Create a new ResumeRank account",
+};
 
 export default function SignupPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <SignupForm />
-      </div>
-    </main>
+    <AuthLayout
+      title="Create account"
+      description="Join ResumeRank to start improving your resume"
+    >
+      <SignupForm />
+    </AuthLayout>
   );
 }
