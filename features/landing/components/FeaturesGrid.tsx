@@ -1,81 +1,98 @@
-'use client';
+"use client";
 
-import { Zap, Target, Sparkles, TrendingUp, Lock, Rocket, BarChart3, Clock } from 'lucide-react';
+import {
+  Brain,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  BarChart3,
+  History,
+} from "lucide-react";
+
+const FEATURES = [
+  {
+    icon: Brain,
+    title: "AI Resume Analysis",
+    description:
+      "Receive instant AI-powered feedback on structure, content, readability, and impact.",
+  },
+  {
+    icon: Target,
+    title: "ATS Score",
+    description:
+      "Check how well your resume matches Applicant Tracking Systems before applying.",
+  },
+  {
+    icon: Sparkles,
+    title: "Keyword Optimization",
+    description:
+      "Identify missing keywords from job descriptions to improve recruiter visibility.",
+  },
+  {
+    icon: BarChart3,
+    title: "Performance Insights",
+    description:
+      "Track resume improvements with visual analytics and section-wise scoring.",
+  },
+  {
+    icon: History,
+    title: "Resume History",
+    description:
+      "Store multiple resume versions and compare previous analyses anytime.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Privacy First",
+    description:
+      "Your resumes stay encrypted and secure. You control your personal data.",
+  },
+];
 
 export function FeaturesGrid() {
-  const features = [
-    {
-      icon: Zap,
-      title: 'ATS Score',
-      description: 'Get an instant ATS compatibility score for your resume',
-    },
-    {
-      icon: Sparkles,
-      title: 'AI Suggestions',
-      description: 'Receive actionable, AI-powered improvement suggestions',
-    },
-    {
-      icon: Target,
-      title: 'Keyword Analysis',
-      description: 'Identify missing keywords and optimize your content',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Resume Comparison',
-      description: 'Compare your resume against job descriptions',
-    },
-    {
-      icon: Clock,
-      title: 'Resume History',
-      description: 'Track changes and improvements over time',
-    },
-    {
-      icon: BarChart3,
-      title: 'Analytics',
-      description: 'Detailed insights into your resume performance',
-    },
-    {
-      icon: Lock,
-      title: 'Secure Storage',
-      description: 'Your data is encrypted and completely secure',
-    },
-    {
-      icon: Rocket,
-      title: 'Fast Processing',
-      description: 'Get results in seconds, not minutes',
-    },
-  ];
-
   return (
-    <section id="features" className="border-t border-border px-4 py-20 sm:py-32">
+    <section
+      id="features"
+      className="border-t border-border px-4 py-24"
+    >
       <div className="mx-auto max-w-7xl">
-        <div className="space-y-12">
-          <div className="space-y-4 text-center">
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Powerful Features
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Everything you need to ace your resume and land interviews
-            </p>
-          </div>
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="rounded-full border border-brand/20 bg-brand/10 px-4 py-1 text-sm font-medium text-brand">
+            Features
+          </span>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={feature.title}
-                  className="border-border hover:border-brand/50 group rounded-xl border bg-card p-6 transition-all duration-300 hover:shadow-lg"
-                >
-                  <div className="bg-brand/10 group-hover:bg-brand/20 mb-4 flex w-fit rounded-lg p-2 transition-colors">
-                    <Icon className="text-brand size-6" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm">{feature.description}</p>
+          <h2 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
+            Everything you need to build a stronger resume
+          </h2>
+
+          <p className="text-muted-foreground mt-5 text-lg leading-8">
+            ResumeRank combines AI, ATS optimization, and actionable insights
+            into one powerful platform.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {FEATURES.map((feature) => {
+            const Icon = feature.icon;
+
+            return (
+              <div
+                key={feature.title}
+                className="group rounded-3xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl"
+              >
+                <div className="mb-6 inline-flex rounded-2xl bg-brand/10 p-3 text-brand transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="size-6" />
                 </div>
-              );
-            })}
-          </div>
+
+                <h3 className="mb-3 text-xl font-semibold">
+                  {feature.title}
+                </h3>
+
+                <p className="text-muted-foreground leading-7">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

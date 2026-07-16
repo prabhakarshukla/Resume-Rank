@@ -1,66 +1,91 @@
-'use client';
+"use client";
 
-import { CheckCircle, AlertCircle, TrendingUp } from 'lucide-react';
+import {
+  CheckCircle2,
+  TriangleAlert,
+  TrendingUp,
+  BadgeCheck,
+} from "lucide-react";
 
 export function AIAnalysisPreview() {
   return (
-    <section className="border-t border-border px-4 py-20 sm:py-32">
+    <section className="border-t border-border px-4 py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="space-y-12">
-          <div className="space-y-4 text-center">
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Sample Analysis
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              See what an AI analysis looks like
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="rounded-full border border-brand/20 bg-brand/10 px-4 py-1 text-sm font-medium text-brand">
+            AI Analysis
+          </span>
+
+          <h2 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
+            Actionable insights in seconds
+          </h2>
+
+          <p className="text-muted-foreground mt-5 text-lg">
+            ResumeRank doesn't just score your resume—it explains exactly what
+            to improve.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[320px_1fr]">
+          <div className="rounded-3xl border bg-card p-8 text-center">
+            <p className="text-muted-foreground text-sm">
+              Overall ATS Score
             </p>
+
+            <div className="my-8 text-7xl font-bold text-brand">
+              92%
+            </div>
+
+            <div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-4 py-2 text-green-600">
+              <TrendingUp className="size-4" />
+              Excellent Match
+            </div>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-2">
-            {/* ATS Score Card */}
-            <div className="rounded-xl border border-border bg-card p-8">
+          <div className="grid gap-6">
+            <div className="rounded-2xl border bg-card p-6">
+              <h3 className="mb-5 text-lg font-semibold">
+                AI Recommendations
+              </h3>
+
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg">ATS Score</h3>
-                <div className="flex items-end gap-4">
-                  <div className="text-6xl font-bold text-brand">85%</div>
-                  <div className="text-muted-foreground text-sm mb-2">
-                    <TrendingUp className="inline size-4 mr-1" />
-                    Strong match
-                  </div>
+                <div className="flex gap-3">
+                  <CheckCircle2 className="mt-1 text-green-500" />
+                  <p>Add quantified achievements wherever possible.</p>
                 </div>
-                <div className="space-y-2 pt-4">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Keywords matched</span>
-                    <span className="font-semibold">24/32</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-muted overflow-hidden">
-                    <div className="h-full bg-success w-[75%]" />
-                  </div>
+
+                <div className="flex gap-3">
+                  <TriangleAlert className="mt-1 text-orange-500" />
+                  <p>Include Docker and AWS keywords.</p>
+                </div>
+
+                <div className="flex gap-3">
+                  <BadgeCheck className="mt-1 text-brand" />
+                  <p>Your resume summary is well optimized.</p>
                 </div>
               </div>
             </div>
 
-            {/* Suggestions Card */}
-            <div className="rounded-xl border border-border bg-card p-8">
-              <div className="space-y-4">
-                <h3 className="font-semibold text-lg">AI Suggestions</h3>
-                <div className="space-y-3">
-                  {[
-                    { label: 'Add Python to skills', type: 'improvement' },
-                    { label: 'Use "Led team of 5" instead of "Worked with team"', type: 'improvement' },
-                    { label: 'Great use of impact metrics', type: 'strength' },
-                  ].map((suggestion, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      {suggestion.type === 'strength' ? (
-                        <CheckCircle className="text-success size-5 flex-shrink-0 mt-0.5" />
-                      ) : (
-                        <AlertCircle className="text-warning size-5 flex-shrink-0 mt-0.5" />
-                      )}
-                      <span className="text-sm">{suggestion.label}</span>
-                    </div>
-                  ))}
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                ["Formatting", "95%"],
+                ["Keywords", "88%"],
+                ["Readability", "91%"],
+                ["Impact", "93%"],
+              ].map(([label, score]) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border bg-card p-5"
+                >
+                  <p className="text-muted-foreground text-sm">
+                    {label}
+                  </p>
+
+                  <p className="mt-2 text-3xl font-bold">
+                    {score}
+                  </p>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
