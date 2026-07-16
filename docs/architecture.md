@@ -281,6 +281,22 @@ features/
 ├── dashboard/
 ├── profile/
 └── resume/
+    ├── components/
+    │   ├── upload-card.tsx
+    │   ├── upload-form.tsx
+    │   ├── upload-progress.tsx
+    │   ├── resume-preview.tsx
+    │   ├── resume-list.tsx
+    │   ├── resume-list-skeleton.tsx
+    │   ├── resume-search.tsx
+    │   ├── resume-sort.tsx
+    │   ├── resume-actions.tsx
+    │   ├── rename-resume-dialog.tsx
+    │   └── resume-metadata.tsx
+    ├── parser.ts
+    ├── service.ts
+    ├── upload.ts
+    └── types.ts
 ```
 
 ---
